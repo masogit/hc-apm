@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
-import { Box, Sidebar } from 'grommet';
+import { Sidebar } from 'grommet';
 import { Menu } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { getTheme } from '../constants/themes';
@@ -11,15 +11,15 @@ class App extends Component {
     const { menu, header } = this.props;
     return (
         <MuiThemeProvider muiTheme={getTheme('blackTheme')}>
-            <Box flex>
+            <div>
                 <AppBar title={header.title} />
-                <Box>
+                <div>
                     <Sidebar separator="right" size="small">
                         <Menu menu={menu}/>
                     </Sidebar>
-                    <Box>body</Box>
-                </Box>
-            </Box>
+                    <div>body</div>
+                </div>
+            </div>
         </MuiThemeProvider>
     );
   }
