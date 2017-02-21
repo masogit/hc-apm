@@ -4,15 +4,15 @@ import AppBar from 'material-ui/AppBar';
 import { Box, Sidebar } from 'grommet';
 import { Menu } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import theme from '../constants/themes';
+import { getTheme } from '../constants/themes';
 
 class App extends Component {
   render() {
-    const { menu } = this.props;
+    const { menu, header } = this.props;
     return (
-        <MuiThemeProvider muiTheme={theme('blackTheme')}>
+        <MuiThemeProvider muiTheme={getTheme('blackTheme')}>
             <Box flex>
-                <AppBar title="GE Healthcare APM" />
+                <AppBar title={header.title} />
                 <Box>
                     <Sidebar separator="right" size="small">
                         <Menu menu={menu}/>
@@ -32,7 +32,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    menu: state.menu
+    menu: state.menu,
+    header: state.header
   };
 }
 
