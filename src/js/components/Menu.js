@@ -1,43 +1,33 @@
 import React from 'react';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
+import { browserHistory } from 'react-router';
 const svgIcons = require('material-ui/svg-icons');
 
 export default class Menu extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      open: false
-    };
-    this.handleNestedListToggle = this.handleNestedListToggle.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
-  }
 
-  handleToggle(event) {
-    this.setState({
-      open: !this.state.open
-    });
-  };
-
-  handleNestedListToggle(item) {
-    this.setState({
-      open: item.state.open
-    });
-  };
-
-  renderListItem(items) {
+  renderListItem(items, parentRoute) {
     return items.map((item) => {
+      const route = parentRoute ? parentRoute + item.route : item.route;
       const props = {
-        primaryText: item.key
+        key: "apm_menu_" + item.key,
+        primaryText: item.key,
+        primaryTogglesNestedList: true
       };
 
       if (item.icon) {
         const Icon = svgIcons[item.icon];
         props.leftIcon = <Icon />;
       };
+
+      if (item.route && !item.child) {
+        props.onNestedListToggle = () => {
+          browserHistory.push(route);
+        };
+      }
       
       if (item.child) {
-        props.nestedItems = this.renderListItem(item.child);
+        props.nestedItems = this.renderListItem(item.child, route);
       }
       return <ListItem {...props} />;
     });
@@ -45,7 +35,6 @@ export default class Menu extends React.Component {
 
   render() {
     const { menu } = this.props;
-
     return (
         <List>
           <Subheader>
