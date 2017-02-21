@@ -1,0 +1,18 @@
+{
+  "zh": {
+    "menu_home": "我的主页",
+    "menu.device_file": "设备档案",
+    "menu.device_file.info": "基本信息",
+    "menu.device_file.check": "设备盘点",
+    "menu.configuration": "系统配置",
+    "menu.configuration.tenant": "租户管理"
+  },
+  "en": {
+    "menu_home": "Home",
+    "menu.device_file": "Device File",
+    "menu.device_file.info": "Info",
+    "menu.device_file.check": "Check",
+    "menu.configuration": "Configuration",
+    "menu.configuration.tenant": "Tenant"
+  }
+}

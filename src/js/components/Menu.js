@@ -2,6 +2,7 @@ import React from 'react';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import { browserHistory } from 'react-router';
+import { Translate } from 'react-redux-i18n';
 const svgIcons = require('material-ui/svg-icons');
 
 export default class Menu extends React.Component {
@@ -11,7 +12,7 @@ export default class Menu extends React.Component {
       const route = parentRoute ? parentRoute + item.route : item.route;
       const props = {
         key: "apm_menu_" + item.key,
-        primaryText: item.key,
+        primaryText: <Translate value={item.key} />,
         primaryTogglesNestedList: true
       };
 
