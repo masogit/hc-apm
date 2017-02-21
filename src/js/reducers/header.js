@@ -6,6 +6,9 @@ const initialState = {
   title: 'GE APM',
   currentTheme: 'baseTheme',
   themes: getThemes(),
+  siderBarToggle: true,
+  currentLocale: 'zh',
+  locales: [],
   user: {
     name: 'Admin',
     email: 'admin@abc.com'
