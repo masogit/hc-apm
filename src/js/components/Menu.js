@@ -36,7 +36,9 @@ export default class Menu extends React.Component {
         props.leftIcon = <Icon />;
       };
       
-
+      if (item.child) {
+        props.nestedItems = this.renderListItem(item.child);
+      }
       return <ListItem {...props} />;
     });
   }
