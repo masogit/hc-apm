@@ -30,10 +30,10 @@ const blackTheme = {
     accent1Color: Colors.pinkA200,
     accent2Color: Colors.grey100,
     accent3Color: Colors.grey500,
-    textColor: Colors.darkBlack,
+    textColor: Colors.white,
     alternateTextColor: Colors.white,
-    canvasColor: Colors.grey700,
-    borderColor: Colors.grey300,
+    canvasColor: Colors.grey900,
+    borderColor: Colors.grey900,
     disabledColor: fade(Colors.darkBlack, 0.3)
   }
 };

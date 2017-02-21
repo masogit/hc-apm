@@ -3,7 +3,7 @@ import { getThemes } from '../constants/themes';
 
 const initialState = {
   logo: 'ge.png',
-  title: 'GE Healthcare APM',
+  title: 'GE APM',
   currentTheme: 'baseTheme',
   themes: getThemes(),
   user: {
