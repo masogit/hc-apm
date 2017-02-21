@@ -27,7 +27,7 @@ class App extends Component {
                       <AppBar title={header.title} />
                       <Menu menu={menu}/>
                     </Drawer>
-                    <div>body</div>
+                    <div>{this.props.children}</div>
                 </div>
             </div>
         </MuiThemeProvider>
