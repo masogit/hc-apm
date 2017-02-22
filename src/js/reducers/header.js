@@ -8,15 +8,20 @@ const initialState = {
   themes: getThemes(),
   siderBarToggle: true,
   currentLocale: 'zh',
-  locales: [],
+  locales: ['en', 'zh'],
   user: {
     name: 'Admin',
     email: 'admin@abc.com'
-  }
+  },
+  messages: ''
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case TYPE.MSG_ALERT:
+      return { ...state, ...{messages: action.message} };
+    case TYPE.MSG_CLOSE:
+      return { ...state, ...{messages: ''} };
     case TYPE.TOGGLE_SIDEBAR:
       return { ...state, ...{siderBarToggle: !state.siderBarToggle} };
     case TYPE.LOGIN:

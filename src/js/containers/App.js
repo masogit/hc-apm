@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { AppBar, Drawer } from 'material-ui';
+import { AppBar, Drawer, Snackbar } from 'material-ui';
 import { Menu, TopBar } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TYPE, themes } from '../constants';
@@ -19,8 +19,20 @@ class App extends Component {
     );
   }
 
+  renderSnackbar() {
+    const { header, messageClose } = this.props;
+    return (
+      <Snackbar
+        open={header.messages !== ''}
+        message={header.messages}
+        autoHideDuration={3000}
+        onRequestClose={messageClose}
+      />
+    );
+  }
+
   render() {
-    const { header, actions, toggleSidebar } = this.props;
+    const { header, actions, toggleSidebar, messageSend } = this.props;
     const fixedWidthStyle = {
       paddingLeft: '270px'
     };
@@ -29,10 +41,11 @@ class App extends Component {
         <MuiThemeProvider muiTheme={themes.getTheme(header.currentTheme)}>
             <div>
                 { this.renderSidebar() }
-                <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} />
+                <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} messageSend={messageSend}/>
                 <div style={header.siderBarToggle ? fixedWidthStyle : null}>
                   {this.props.children}
                 </div>
+                { this.renderSnackbar() }
             </div>
         </MuiThemeProvider>
     );
@@ -54,7 +67,9 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(headerActions, dispatch),
-    toggleSidebar: () => dispatch({type: TYPE.TOGGLE_SIDEBAR})
+    toggleSidebar: () => dispatch({type: TYPE.TOGGLE_SIDEBAR}),
+    messageClose: () => dispatch({type: TYPE.MSG_CLOSE}),
+    messageSend: (msg) => dispatch({type: TYPE.MSG_ALERT, message: msg})
   };
 }
 
