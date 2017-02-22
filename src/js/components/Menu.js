@@ -41,11 +41,11 @@ export default class Menu extends React.Component {
   }
 
   render() {
-    const { menu } = this.props;
+    const { menu, user } = this.props;
     return (
         <List>
           <Subheader>
-            Welcome
+            Welcome, {user.name}
           </Subheader>
           { this.renderListItem(menu) }
         </List>

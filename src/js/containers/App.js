@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Drawer open={header.siderBarToggle}>
         <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
-        <Menu menu={menu} path={this.props.location.pathname}/>
+        <Menu menu={menu} path={this.props.location.pathname} user={header.user}/>
       </Drawer>
     );
   }
