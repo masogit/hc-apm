@@ -5,6 +5,7 @@ import NoFound from './NoFound';
 import AlertDialog from './AlertDialog';
 import DeviceFileInfo from './DeviceFileInfo';
 import DeviceFileCheck from './DeviceFileCheck';
+import DevTools from './DevTools';
 
 export {
   Login,
@@ -13,5 +14,6 @@ export {
   NoFound,
   AlertDialog,
   DeviceFileInfo,
-  DeviceFileCheck
+  DeviceFileCheck,
+  DevTools
 };

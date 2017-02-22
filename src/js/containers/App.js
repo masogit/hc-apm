@@ -6,6 +6,7 @@ import { Menu, TopBar } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TYPE, themes } from '../constants';
 import { headerActions } from '../actions';
+import DevTools  from './DevTools';
 
 class App extends Component {
 
@@ -47,6 +48,7 @@ class App extends Component {
                   { this.props.children }
                 </div>
                 { this.renderSnackbar() }
+                <DevTools />
             </div>
         </MuiThemeProvider>
     );
