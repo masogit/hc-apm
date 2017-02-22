@@ -1,28 +1,39 @@
-import { App, Customer, Device, DeviceModel, DeviceAlarm, DeviceHistory, DeviceStatus, Frame, Home, Login, Settings, WorkOrder, NoFound, Status } from './containers';
+import * as Container from './containers';
 
-export default [{
-  path: '/login',
-  component: Login
-}, {
+const menu = require('../../conf/menu.json');
+
+let menu_router = {
   path: '/',
-  component: App
-}, {
-  path: '/dashboard',
-  component: Frame,
-  indexRoute: { component: Home },
-  childRoutes: [
-    { path: 'home', component: Home },
-    { path: 'device', component: Device },
-    { path: 'device/alarm', component: DeviceAlarm },
-    { path: 'device/history', component: DeviceHistory },
-    { path: 'device/status', component: DeviceStatus },
-    { path: 'workorder', component: WorkOrder },
-    { path: 'settings', component: Settings },
-    { path: 'settings/customer/:name', component: Customer },
-    { path: 'settings/device/:model', component: DeviceModel },
-    { path: 'settings/status/:param', component: Status }
-  ]
-}, {
+  component: Container.App,
+  childRoutes: []
+};
+
+// set default component: the first container in menu
+menu_router.indexRoute = {
+  component: Container[menu[0].container]
+};
+
+function addRouters(items, parentRoute) {
+  items.forEach((item) => {
+    const route = parentRoute ? parentRoute + item.route : item.route;
+    if (item.container) {
+      menu_router.childRoutes.push({  path: route, component: Container[item.container] ? Container[item.container] : Container.NoFound});
+    }
+
+    if (item.child) {
+      addRouters(item.child, route);
+    }
+  });
+}
+
+addRouters(menu);
+
+const routers = [{
+  path: '/login',
+  component: Container.Login
+}, menu_router, {
   path: '*',
-  component: NoFound
+  component: Container.NoFound
 }];
+
+export default routers;
