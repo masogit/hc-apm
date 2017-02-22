@@ -33,17 +33,5 @@
         "container": "ConfTenant"
       }
     ]
-  },
-  {
-    "key": "menu.abc",
-    "icon": "ContentDrafts",
-    "route": "/abc",
-    "child": [
-      {
-        "key": "menu.configuration.tenant",
-        "route": "/tenant",
-        "container": "ConfTenant"
-      }
-    ]
   }
 ]

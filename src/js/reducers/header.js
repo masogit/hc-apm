@@ -3,7 +3,7 @@ import { getThemes } from '../constants/themes';
 
 const initialState = {
   logo: 'ge.png',
-  title: 'GE APM1111',
+  title: 'GE APM',
   currentTheme: 'baseTheme',
   themes: getThemes(),
   siderBarToggle: true,
