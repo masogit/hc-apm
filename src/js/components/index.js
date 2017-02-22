@@ -12,6 +12,7 @@ import BottomCenter from './BottomCenter';
 import BottomLeft from './BottomLeft';
 import BottomRight from './BottomRight';
 import Menu from './Menu';
+import TopBar from './TopBar';
 
 export {
   Footer,
@@ -27,5 +28,6 @@ export {
   BottomCenter,
   BottomLeft,
   BottomRight,
-  Menu
+  Menu,
+  TopBar
 };

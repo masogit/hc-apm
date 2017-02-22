@@ -1,4 +1,4 @@
-import { types } from './index';
+import { TYPE } from '../constants';
 import { getThemes } from '../constants/themes';
 
 const initialState = {
@@ -17,8 +17,12 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case types.LOGIN:
+    case TYPE.LOGIN:
       return { ...state, ...{user: {name: action.login}}};
+    case TYPE.CHANGE_THEME: {
+      console.log(action.theme);
+      return { ...state, ...{currentTheme: action.theme} };
+    };
     default:
       return state;
   }

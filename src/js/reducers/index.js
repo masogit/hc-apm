@@ -6,13 +6,6 @@ import device from './device';
 import menu from './menu';
 const translationsObject = require('../../../conf/i18n.json');
 
-const types = {
-  ACTIVE: 'module_active',
-  LOGIN: 'app_login'
-};
-
-export { types }; // MUST put before reducers define
-
 const reducers = combineReducers({
   header,
   device,

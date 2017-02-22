@@ -1,4 +1,4 @@
-import { types } from './index';
+import { TYPE } from '../constants';
 
 const initialState = {
   records: [
@@ -16,9 +16,9 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case types.ACTIVE:
+    case TYPE.ACTIVE:
       return { ...state, ...{activeIndex: action.index} };
-    case types.LOGIN:
+    case TYPE.LOGIN:
       return { ...state, ...{user: {name: action.login}}};
     default:
       return state;

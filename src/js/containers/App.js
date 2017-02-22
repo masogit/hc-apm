@@ -1,27 +1,19 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { AppBar, Drawer, IconMenu, IconButton, MenuItem } from 'material-ui';
-import { SocialPerson } from 'material-ui/svg-icons';
-import { Menu } from '../components';
+import { bindActionCreators } from 'redux';
+import { AppBar, Drawer } from 'material-ui';
+import { Menu, TopBar } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { getTheme } from '../constants/themes';
+import { headerActions } from '../actions';
 
 class App extends Component {
   render() {
-    const { menu, header } = this.props;
-    const iconElementRight = (
-      <IconMenu iconButtonElement={<IconButton><SocialPerson /></IconButton>} targetOrigin={{vertical: 'bottom', horizontal: 'left'}}>
-          <MenuItem value="1" primaryText="Refresh" />
-          <MenuItem value="2" primaryText="Send feedback" />
-          <MenuItem value="3" primaryText="Settings" />
-          <MenuItem value="4" primaryText="Help" />
-          <MenuItem value="5" primaryText="Sign out" />
-      </IconMenu>
-    );
+    const { menu, header, actions } = this.props;
     return (
         <MuiThemeProvider muiTheme={getTheme(header.currentTheme)}>
             <div>
-                <AppBar iconElementRight={iconElementRight} />
+                <TopBar header={header} actions={actions} />
                 <div>
                     <Drawer zDepth={2}>
                       <AppBar title={header.title} />
@@ -47,12 +39,12 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(TodoActions, dispatch)
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(headerActions, dispatch)
+  };
+}
 
 export default connect(
-  mapStateToProps
+  mapStateToProps, mapDispatchToProps
 )(App);
