@@ -12,7 +12,7 @@ class App extends Component {
   renderSidebar() {
     const { menu, header, toggleSidebar } = this.props;
     return (
-      <Drawer zDepth={2} open={header.siderBarToggle}>
+      <Drawer open={header.siderBarToggle}>
         <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
         <Menu menu={menu}/>
       </Drawer>
@@ -21,13 +21,17 @@ class App extends Component {
 
   render() {
     const { header, actions, toggleSidebar } = this.props;
+    const fixedWidthStyle = {
+      paddingLeft: '270px'
+    };
+
     return (
         <MuiThemeProvider muiTheme={themes.getTheme(header.currentTheme)}>
             <div>
+                { this.renderSidebar() }
                 <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} />
-                <div>
-                    { this.renderSidebar() }
-                    <div>{this.props.children}</div>
+                <div style={header.siderBarToggle ? fixedWidthStyle : null}>
+                  {this.props.children}
                 </div>
             </div>
         </MuiThemeProvider>
