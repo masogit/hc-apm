@@ -11,13 +11,12 @@ class App extends Component {
 
   renderSidebar() {
     const { menu, header, toggleSidebar } = this.props;
-    if (header.siderBarToggle)
-      return (
-        <Drawer zDepth={2}>
-          <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
-          <Menu menu={menu}/>
-        </Drawer>
-      );
+    return (
+      <Drawer zDepth={2} open={header.siderBarToggle}>
+        <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
+        <Menu menu={menu}/>
+      </Drawer>
+    );
   }
 
   render() {
