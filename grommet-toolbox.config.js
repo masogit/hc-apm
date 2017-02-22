@@ -16,7 +16,10 @@ export default {
     devServer: {
       proxy: {
         "/dataget": {
-          target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget"
+          target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget",
+          secure: false,
+          changeOrigin: true,
+          ignorePath: true
         }
       }
     },
