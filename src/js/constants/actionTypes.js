@@ -5,7 +5,9 @@ const TYPE =  {
   CHANGE_LOCALE: 'change_language_to',
   TOGGLE_SIDEBAR: 'toggle_sidebar',
   MSG_ALERT: 'message_arrived',
-  MSG_CLOSE: 'message_closed'
+  MSG_CLOSE: 'message_closed',
+
+  REST_LOAD_SITES: 'rest_load_sites'
 };
 
 export default TYPE;

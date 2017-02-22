@@ -1,8 +1,9 @@
 import * as headerActions from './header';
-// import * as mapActions from './map';
+import * as restActions from './rest';
 // import * as systemActions from './system';
 // import * as deckActions from './deck';
 
 export {
-  headerActions
+  headerActions,
+  restActions
 };

@@ -3,7 +3,7 @@ import { getThemes } from '../constants/themes';
 
 const initialState = {
   logo: 'ge.png',
-  title: 'GE APM',
+  title: 'GE APM1111',
   currentTheme: 'baseTheme',
   themes: getThemes(),
   siderBarToggle: true,
@@ -29,7 +29,6 @@ export default function (state = initialState, action) {
     case TYPE.CHANGE_LOCALE:
       return { ...state, ...{currentLocale: action.locale}};
     case TYPE.CHANGE_THEME: {
-      console.log(action.theme);
       return { ...state, ...{currentTheme: action.theme} };
     };
     default:
