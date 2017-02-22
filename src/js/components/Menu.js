@@ -8,6 +8,7 @@ const svgIcons = require('material-ui/svg-icons');
 export default class Menu extends React.Component {
 
   renderListItem(items, parentRoute) {
+    const { path } = this.props;
     return items.map((item) => {
       const route = parentRoute ? parentRoute + item.route : item.route;
       const props = {
@@ -26,10 +27,15 @@ export default class Menu extends React.Component {
           browserHistory.push(route);
         };
       }
-      
+
       if (item.child) {
         props.nestedItems = this.renderListItem(item.child, route);
       }
+
+      if (path.indexOf(item.route) > -1) {
+        props.initiallyOpen = true;
+      }
+
       return <ListItem {...props} />;
     });
   }

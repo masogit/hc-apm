@@ -1,4 +1,4 @@
-const domain = 'https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget';
+const domain = '/dataget';
 
 const URL = {
   SITE: '/site_info'

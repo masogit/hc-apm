@@ -13,6 +13,13 @@ export default {
   mainScss: 'src/scss/index.scss',
   devServerPort: 9001,
   webpack: {
+    devServer: {
+      proxy: {
+        "/dataget": {
+          target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget"
+        }
+      }
+    },
     devtool: 'cheap-source-map'
   }
 };

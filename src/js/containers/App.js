@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Drawer open={header.siderBarToggle}>
         <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
-        <Menu menu={menu}/>
+        <Menu menu={menu} path={this.props.location.pathname}/>
       </Drawer>
     );
   }
@@ -36,7 +36,7 @@ class App extends Component {
     const fixedWidthStyle = {
       paddingLeft: '270px'
     };
-    console.log(this.props.children);
+    // console.log(this);
     return (
         <MuiThemeProvider muiTheme={themes.getTheme(header.currentTheme)}>
             <div>
