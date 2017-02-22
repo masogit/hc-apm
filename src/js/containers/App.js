@@ -36,14 +36,15 @@ class App extends Component {
     const fixedWidthStyle = {
       paddingLeft: '270px'
     };
-
+    console.log(this.props.children);
     return (
         <MuiThemeProvider muiTheme={themes.getTheme(header.currentTheme)}>
             <div>
                 { this.renderSidebar() }
                 <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} messageSend={messageSend}/>
                 <div style={header.siderBarToggle ? fixedWidthStyle : null}>
-                  {this.props.children}
+                  <h2> { this.props.children.type.name } </h2>
+                  { this.props.children }
                 </div>
                 { this.renderSnackbar() }
             </div>

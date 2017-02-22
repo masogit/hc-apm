@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class DeviceFileInfo extends Component {
+export default class DeviceFileCheck extends Component {
   render() {
     return (
         <div>
