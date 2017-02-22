@@ -17,6 +17,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case TYPE.TOGGLE_SIDEBAR:
+      return { ...state, ...{siderBarToggle: !state.siderBarToggle} };
     case TYPE.LOGIN:
       return { ...state, ...{user: {name: action.login}}};
     case TYPE.CHANGE_LOCALE:

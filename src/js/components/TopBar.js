@@ -23,7 +23,7 @@ export default class TopBar extends Component {
   }
 
   render() {
-    const { header, actions } = this.props;
+    const { header, actions, toggleSidebar } = this.props;
     const iconElementRight = (
       <IconMenu iconButtonElement={<IconButton><SocialPerson /></IconButton>} targetOrigin={{vertical: 'bottom', horizontal: 'left'}}>
           { this.renderThemeMenuItem(header, actions) }
@@ -36,7 +36,7 @@ export default class TopBar extends Component {
     );
 
     return (
-        <AppBar iconElementRight={iconElementRight} />
+        <AppBar title={header.title} iconElementRight={iconElementRight} onLeftIconButtonTouchTap={toggleSidebar} />
     );
   }
 };

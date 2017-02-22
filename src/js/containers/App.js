@@ -4,21 +4,30 @@ import { bindActionCreators } from 'redux';
 import { AppBar, Drawer } from 'material-ui';
 import { Menu, TopBar } from '../components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { getTheme } from '../constants/themes';
+import { TYPE, themes } from '../constants';
 import { headerActions } from '../actions';
 
 class App extends Component {
+
+  renderSidebar() {
+    const { menu, header, toggleSidebar } = this.props;
+    if (header.siderBarToggle)
+      return (
+        <Drawer zDepth={2}>
+          <AppBar title={header.title} onLeftIconButtonTouchTap={toggleSidebar} />
+          <Menu menu={menu}/>
+        </Drawer>
+      );
+  }
+
   render() {
-    const { menu, header, actions } = this.props;
+    const { header, actions, toggleSidebar } = this.props;
     return (
-        <MuiThemeProvider muiTheme={getTheme(header.currentTheme)}>
+        <MuiThemeProvider muiTheme={themes.getTheme(header.currentTheme)}>
             <div>
-                <TopBar header={header} actions={actions} />
+                <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} />
                 <div>
-                    <Drawer zDepth={2}>
-                      <AppBar title={header.title} />
-                      <Menu menu={menu}/>
-                    </Drawer>
+                    { this.renderSidebar() }
                     <div>{this.props.children}</div>
                 </div>
             </div>
@@ -41,7 +50,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(headerActions, dispatch)
+    actions: bindActionCreators(headerActions, dispatch),
+    toggleSidebar: () => dispatch({type: TYPE.TOGGLE_SIDEBAR})
   };
 }
 
