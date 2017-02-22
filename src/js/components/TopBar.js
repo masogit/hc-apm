@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { AppBar, IconMenu, IconButton, MenuItem, Toggle } from 'material-ui';
-import { SocialPerson } from 'material-ui/svg-icons';
+import { SocialPerson, ActionExitToApp, ActionHelp } from 'material-ui/svg-icons';
+import { Translate } from 'react-redux-i18n';
 
 export default class TopBar extends Component {
 
@@ -14,15 +15,23 @@ export default class TopBar extends Component {
     );
   }
 
+  renderLocaleMenuItem(header, actions) {
+    const zhLocale = (header.currentLocale == 'zh');
+    return (
+        <MenuItem leftIcon={<Toggle toggled={zhLocale} />} primaryText={header.currentLocale} onTouchTap={actions.switchLocale.bind(this, header.currentLocale)}/>
+    );
+  }
+
   render() {
     const { header, actions } = this.props;
     const iconElementRight = (
       <IconMenu iconButtonElement={<IconButton><SocialPerson /></IconButton>} targetOrigin={{vertical: 'bottom', horizontal: 'left'}}>
           { this.renderThemeMenuItem(header, actions) }
-          <MenuItem value="2" primaryText="Send feedback" />
-          <MenuItem value="3" primaryText="Settings" />
-          <MenuItem value="4" primaryText="Help" />
-          <MenuItem value="5" primaryText="Sign out" />
+          { this.renderLocaleMenuItem(header, actions) }
+          <MenuItem value="2" primaryText="Send feedback" insetChildren/>
+          <MenuItem value="3" primaryText="Settings" insetChildren/>
+          <MenuItem value="4" primaryText="Help" leftIcon={<ActionHelp />} />
+          <MenuItem value="5" primaryText={<Translate value="header.menu.logoff" />} leftIcon={<ActionExitToApp />}/>
       </IconMenu>
     );
 

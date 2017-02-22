@@ -19,6 +19,8 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case TYPE.LOGIN:
       return { ...state, ...{user: {name: action.login}}};
+    case TYPE.CHANGE_LOCALE:
+      return { ...state, ...{currentLocale: action.locale}};
     case TYPE.CHANGE_THEME: {
       console.log(action.theme);
       return { ...state, ...{currentTheme: action.theme} };

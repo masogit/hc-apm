@@ -1,7 +1,7 @@
 [
   {
     "key": "menu_home",
-    "icon": "ActionGrade",
+    "icon": "ActionHome",
     "route": "/home",
     "container": "Home"
   },
