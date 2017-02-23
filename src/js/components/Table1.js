@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Table, TableRow, Box } from 'grommet';
+// import { Table, TableRow, Box } from 'grommet';
 import { isArray, values } from 'lodash';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 export default class GTable extends Component {
   constructor(props) {
@@ -10,7 +11,7 @@ export default class GTable extends Component {
   renderTableHeader() {
     const {data, fields} = this.props;
     const fieldKeys = fields ? fields.split(",") : (data ? Object.keys(data[0]) : []);
-    return fieldKeys.map((key, index) => <th key={index}>{key.toUpperCase()}</th>);
+    return fieldKeys.map((key, index) => <TableHeaderColumn key={index}>{key.toUpperCase()}</TableHeaderColumn>);
   }
 
   renderTableBody() {
@@ -22,11 +23,11 @@ export default class GTable extends Component {
           <TableRow key={index}>
             {
               fieldKeys.map((key, tdindex) => (
-                <td key={tdindex}>
+                <TableRowColumn key={tdindex}>
                   {
                     (record[key] instanceof Object) ? values(record[key])[0] : record[key]
                   }
-                </td>
+                </TableRowColumn>
               ))
             }
           </TableRow>
@@ -37,15 +38,13 @@ export default class GTable extends Component {
 
   renderTable() {
     return (
-      <Table selectable={true}>
-        <thead>
-          <tr>
-            {this.renderTableHeader()}
-          </tr>
-        </thead>
-        <tbody>
+      <Table>
+        <TableHeader>
+          {this.renderTableHeader()}
+        </TableHeader>
+        <TableBody>
           {this.renderTableBody()}
-        </tbody>
+        </TableBody>
       </Table>
     );
   }
@@ -60,9 +59,9 @@ export default class GTable extends Component {
     }
 
     return (
-      <Box pad={{ horizontal: 'medium' }} flex={true}>
+      <div>
         {this.renderTable()}
-      </Box>
+      </div>
     );
   }
 }

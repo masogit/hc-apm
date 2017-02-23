@@ -11,12 +11,10 @@ class Home extends Component {
 
   render() {
     const { sites } = this.props;
+    // console.log(sites);
     return (
       <div>This is -------------------------------------------------------Home
-        <Table />
-        {
-          JSON.stringify(sites)
-        }
+        <Table data={sites}/>
       </div>
     );
   }
@@ -24,7 +22,7 @@ class Home extends Component {
 
 function mapStateToProps(state) {
   return {
-    sites: state.sites
+    sites: state.rest.sites
   };
 }
 
