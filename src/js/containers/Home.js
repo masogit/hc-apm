@@ -11,10 +11,14 @@ class Home extends Component {
 
   render() {
     const { sites } = this.props;
-    // console.log(sites);
     return (
       <div>This is -------------------------------------------------------Home
-        <Table data={sites}/>
+        {
+          sites && sites.length > 0 ?
+          <Table data={sites}/>
+          :
+          <div>no data</div>
+        }
       </div>
     );
   }

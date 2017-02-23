@@ -1,6 +1,6 @@
 import { TYPE, URL } from '../constants';
 import { Rest } from 'grommet';
-const sites = require('../../../conf/site.json');
+import sites from '../../../conf/site.json';
 
 export function loadSites() {
   return dispatch => {

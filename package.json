@@ -34,6 +34,7 @@
     "babel-register": "^6.5.2",
     "grommet-toolbox": "^0.4.5",
     "gulp": "^3.9.0",
+    "json-loader": "^0.5.4",
     "redux-devtools": "^3.3.2",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.2.0"

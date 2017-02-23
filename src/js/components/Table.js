@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { isArray, values } from 'lodash';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 
 const confTable = {
@@ -34,9 +33,7 @@ export default class MTable extends Component {
             {
               fieldKeys.map((key, tdindex) => (
                 <TableRowColumn key={tdindex}>
-                  {
-                    (record[key] instanceof Object) ? values(record[key])[0] : record[key]
-                  }
+                  { record[key] }
                 </TableRowColumn>
               ))
             }
@@ -64,7 +61,7 @@ export default class MTable extends Component {
 
     if (data == undefined || data == null) {
       return <div>Loading...</div>;
-    } else if (!isArray(data)) {
+    } else if (!data instanceof Array) {
       return <div>Data type is incorrect</div>;
     }
 

@@ -1,5 +1,3 @@
-import path from 'path';
-
 export default {
   copyAssets: [
     'src/index.html',
@@ -13,6 +11,9 @@ export default {
   mainScss: 'src/scss/index.scss',
   devServerPort: 9001,
   webpack: {
+    loaders: [
+      { test: /\.json$/, loader: 'json' }
+    ],
     devServer: {
       proxy: {
         "/dataget": {
