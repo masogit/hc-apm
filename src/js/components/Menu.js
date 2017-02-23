@@ -4,8 +4,20 @@ import Subheader from 'material-ui/Subheader';
 import { browserHistory } from 'react-router';
 import { Translate } from 'react-redux-i18n';
 const svgIcons = require('material-ui/svg-icons');
+import * as Colors from 'material-ui/styles/colors';
+
+const activeStyle = {
+  borderRight: `3px ${Colors.cyan700} solid`,
+  transition: 'none'
+};
 
 export default class Menu extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      active: null
+    };
+  }
 
   renderListItem(items, parentRoute) {
     const { path } = this.props;
@@ -25,18 +37,23 @@ export default class Menu extends React.Component {
       if (item.route && !item.child) {
         props.onNestedListToggle = () => {
           browserHistory.push(route);
+          this.setState({active: item.key});
         };
+      } else {
+        if (path.indexOf(item.route) > -1) {
+          props.initiallyOpen = true;
+        }
       }
 
       if (item.child) {
         props.nestedItems = this.renderListItem(item.child, route);
       }
 
-      if (path.indexOf(item.route) > -1) {
-        props.initiallyOpen = true;
+      if (this.state.active == item.key || path == route) {
+        props.style = activeStyle;
       }
 
-      return <ListItem {...props} />;
+      return <ListItem {...props}/>;
     });
   }
 
