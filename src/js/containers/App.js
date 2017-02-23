@@ -7,8 +7,39 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TYPE, themes } from '../constants';
 import { headerActions } from '../actions';
 import DevTools  from './DevTools';
+import { Translate } from 'react-redux-i18n';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      containerHeader: ''
+    };
+  }
+
+  componentWillMount() {
+    this.findMenuNameByPath(this.props.menu);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const path = this.props.location.pathname;
+    const pathPrev = prevProps.location.pathname;
+    if (path != pathPrev)
+      this.findMenuNameByPath(this.props.menu);
+  }
+
+  findMenuNameByPath(items, parentRoute) {
+    const path = this.props.location.pathname;
+    items.forEach((item) => {
+      const route = parentRoute ? parentRoute + item.route : item.route;
+      if (path == route) {
+        this.setState({containerHeader: <Translate value={item.key} />});
+        return;
+      } else if (item.child) {
+        this.findMenuNameByPath(item.child, route);
+      }
+    });
+  }
 
   renderSidebar() {
     const { menu, header, toggleSidebar } = this.props;
@@ -44,7 +75,7 @@ class App extends Component {
                 { this.renderSidebar() }
                 <TopBar header={header} actions={actions} toggleSidebar={toggleSidebar} messageSend={messageSend}/>
                 <div style={header.siderBarToggle ? fixedWidthStyle : null}>
-                  <h2> { this.props.children.type.name } </h2>
+                  <h2> { this.state.containerHeader } </h2>
                   { this.props.children }
                 </div>
                 { this.renderSnackbar() }
