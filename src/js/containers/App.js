@@ -18,6 +18,7 @@ class App extends Component {
   }
 
   componentWillMount() {
+    this.setState({containerHeader: <Translate value={this.props.menu[0].key} />});
     this.findMenuNameByPath(this.props.menu);
   }
 
