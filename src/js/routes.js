@@ -1,9 +1,9 @@
 import * as Container from './containers';
-
+const server = require('../../conf/server.json');
 const menu = require('../../conf/menu.json');
 
 let menu_router = {
-  path: '/',
+  path: server.base || '/',
   component: Container.App,
   childRoutes: []
 };
@@ -29,10 +29,10 @@ function addRouters(items, parentRoute) {
 addRouters(menu);
 
 const routers = [{
-  path: '/login',
+  path: server.base + '/login',
   component: Container.Login
 }, menu_router, {
-  path: '*',
+  path: server.base + '/*',
   component: Container.NoFound
 }];
 
