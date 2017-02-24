@@ -1,4 +1,8 @@
-export default {
+const server = require('./conf/server');
+const base = (server && server.base) ? server.base : '';
+const dataget = base + '/dataget';
+
+const config = {
   copyAssets: [
     'src/index.html',
     {
@@ -10,13 +14,7 @@ export default {
   mainJs: 'src/js/index.js',
   mainScss: 'src/scss/index.scss',
   devServerPort: 9001,
-  devServerProxy: {
-    "/dataget": {
-      target: "http://localhost:9000/sites",
-      // target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget",
-      secure: false
-    }
-  },
+  devServerProxy: {},
   webpack: {
     loaders: [
       { test: /\.json$/, loader: 'json' }
@@ -24,3 +22,11 @@ export default {
     devtool: 'cheap-source-map'
   }
 };
+
+config.devServerProxy[dataget] = {
+  target: "http://localhost:9000/apm/dataget",
+  // target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget",
+  secure: false
+};
+
+export default config;

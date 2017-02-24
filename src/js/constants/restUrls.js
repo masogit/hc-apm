@@ -1,4 +1,5 @@
-const domain = '/dataget';
+const server = require('../../../conf/server.json');
+const domain = (server && server.base) ? server.base + '/dataget' : '/dataget';
 
 const URL = {
   SITE: '/site_info'
