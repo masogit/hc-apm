@@ -16,4 +16,4 @@ ReactDOM.render(<Provider store={store}>
                   <Router history={browserHistory} routes={routes} />
                 </Provider>, element);
 
-document.body.classList.remove('loading');
+// document.body.classList.remove('loading');
