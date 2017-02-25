@@ -9,13 +9,13 @@
     "start": "gulp dev",
     "build": "gulp dist",
     "publish": "sh ./scripts/build.sh",
-    "wstart": "webpack-dev-server --compress --hot --progress --colors --port 9001",
+    "wstart": "webpack-dev-server --hot --progress --colors --port 9001",
     "wbuild": "webpack --compress --progress --colors"
   },
   "dependencies": {
+    "babel-loader": "^6.3.2",
+    "css-loader": "^0.26.2",
     "flexboxgrid": "^6.3.1",
-    "grommet": "^1.2.1",
-    "jsx-loader": "^0.13.2",
     "material-ui": "^0.17.0",
     "node-sass": "^4.5.0",
     "react": "^15.4.2",
@@ -31,6 +31,7 @@
     "redux-thunk": "^2.1.0",
     "remark-parse": "^3.0.0",
     "sass-loader": "^6.0.2",
+    "style-loader": "^0.13.2",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
     "webpack-hot-middleware": "^2.17.1"

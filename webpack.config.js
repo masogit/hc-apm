@@ -2,8 +2,7 @@ module.exports = {
   context: __dirname,
   entry: {
     js: "./src/js/index.js",
-    scss: "./src/scss/index.scss",
-    html: "./src/index.html"
+    scss: "./src/scss/index.scss"
   },
 
   output: {
@@ -17,9 +16,8 @@ module.exports = {
     // ],
     rules: [
       // { test: /\.html$/, use: '' },
-      { test: /\.(css|scss)$/, use: 'sass-loader' },
-      { test: /\.js$/, use: 'babel-loader' },
-      { test: /\.jsx$/, use: 'jsx-loader' },
+      { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
+      { test: /\.(js|jsx)$/, use: 'babel-loader' },
       { test: /\.json$/, use: 'json-loader' }
     ]
   }
