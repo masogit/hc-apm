@@ -24,8 +24,8 @@ const config = {
 };
 
 config.devServerProxy[dataget] = {
-  target: "http://localhost:9000/apm/dataget",
-  // target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web/dataget",
+  target: "http://localhost:9000",
+  // target: "https://geapmuat2.run.aws-jp01-pr.ice.predix.io/web",
   secure: false
 };
 
