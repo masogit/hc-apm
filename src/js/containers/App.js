@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Translate } from 'react-redux-i18n';
 import { AppBar, Drawer, Snackbar } from 'material-ui';
 import { Menu, TopBar } from '../components';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { TYPE, themes } from '../constants';
 import { headerActions } from '../actions';
-import DevTools  from './DevTools';
-import { Translate } from 'react-redux-i18n';
+import { DevTools } from '../components';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
   constructor() {

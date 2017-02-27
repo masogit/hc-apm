@@ -7,7 +7,6 @@ import { restActions } from '../actions';
 class Home extends Component {
   componentDidMount() {
     this.props.actions.loadSites();
-    console.log(this);
   }
 
   render() {
