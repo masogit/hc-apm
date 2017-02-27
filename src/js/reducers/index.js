@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { loadTranslations, setLocale, syncTranslationWithStore, i18nReducer } from 'react-redux-i18n';
+import { reducer as formReducer } from 'redux-form';
 import header from './header';
 import menu from './menu';
 import rest from './rest';
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   header,
   menu,
   rest,
+  form: formReducer,
   i18n: i18nReducer
 });
 
