@@ -32,7 +32,7 @@ const routers = [{
   path: server.base + '/login',
   component: Container.Login
 }, menu_router, {
-  path: server.base + '/*',
+  path: server.base ? `${server.base}/*` : '*',
   component: Container.NoFound
 }];
 
