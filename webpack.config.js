@@ -1,4 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+// const HtmlWebpackPlugin = require('html-webpack-plugin'); //installed via npm
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   context: __dirname,
@@ -24,6 +26,10 @@ module.exports = {
     //     //Eslint loader
     //   { test: /\.js$/, exclude: /node_modules/, loader: "eslint-loader"}
     // ],
+    loaders: [
+      { test: /\.js?$/, loaders: ['react-hot'], include: path.join(__dirname, 'src/js') }
+    ],
+
     rules: [
       // { test: /\.html$/, use: '' },
       { test: /\.(css|scss)$/, use: ['style-loader', 'css-loader', 'sass-loader'] },
@@ -33,6 +39,7 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({template: './src/index.html'})
+    // new HtmlWebpackPlugin({template: './src/index.html'}),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
