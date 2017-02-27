@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
 
 const confTable = {
   fixedHeader: true,
@@ -17,6 +17,20 @@ const confTableBody = {
 };
 
 export default class MTable extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showDetail: false,
+      detailForm: null
+    };
+    this.onRowSelection = this.onRowSelection.bind(this);
+  }
+
+  onRowSelection(selectedRows) {
+    if (!isNaN(selectedRows[0]))
+      console.log(this.props.data[selectedRows[0]]);
+  }
+
   renderTableHeader() {
     const {data, fields} = this.props;
     const fieldKeys = fields ? fields.split(",") : (data ? Object.keys(data[0]) : []);
@@ -33,7 +47,7 @@ export default class MTable extends Component {
             {
               fieldKeys.map((key, tdindex) => (
                 <TableRowColumn key={tdindex}>
-                  { record[key] }
+                  { record[key] || '' }
                 </TableRowColumn>
               ))
             }
@@ -45,7 +59,7 @@ export default class MTable extends Component {
 
   renderTable() {
     return (
-      <Table {...confTable}>
+      <Table {...confTable} onRowSelection={this.onRowSelection}>
         <TableHeader>
           {this.renderTableHeader()}
         </TableHeader>
@@ -67,7 +81,7 @@ export default class MTable extends Component {
 
     return (
       <div>
-        {this.renderTable()}
+        { this.renderTable() }
       </div>
     );
   }

@@ -2,11 +2,14 @@ import React, { Component } from "react";
 import { FlatButton, Dialog } from 'material-ui';
 
 export default class AlertDialog extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      open: false
+      open: props.open || true
     };
+
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handleOpen() {
@@ -18,18 +21,15 @@ export default class AlertDialog extends Component {
   };
 
   render() {
+    const { title , element, handleSave } = this.props;
     const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Discard"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />
+      <FlatButton label="Cancel" primary={true} onTouchTap={this.handleClose}/>
     ];
+
+    if (handleSave)
+      actions.push(
+        <FlatButton label="Save" primary={true} onTouchTap={handleSave}/>
+      );
 
     return (
         <Dialog
@@ -38,7 +38,8 @@ export default class AlertDialog extends Component {
             open={this.state.open}
             onRequestClose={this.handleClose}
         >
-            Discard draft?
+            { title || 'This is title area'}
+            { element }
         </Dialog>
     );
   }

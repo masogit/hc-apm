@@ -5,7 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 import header from './header';
 import menu from './menu';
 import rest from './rest';
-import { DevTools } from '../containers';
+import { DevTools } from '../components';
 const translationsObject = require('../../../conf/i18n.json');
 
 const reducers = combineReducers({
